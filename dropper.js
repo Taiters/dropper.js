@@ -1,6 +1,6 @@
 /* ===================================================
  * dropper.js v0.1
- * http://twitter.github.com/bootstrap/javascript.html#transitions
+ * https://github.com/Taiters/dropper.js
  * ===================================================
  * The MIT License (MIT) 
  *
