@@ -4,7 +4,7 @@ _A super fun happy jQuery drag and drop upload plugin_
 
 ## Usage
 
-'''javascript
+```javascript
 
 $('#dropper').dropper('/url/to/upload',{
 	success: function(data) {
@@ -15,7 +15,7 @@ $('#dropper').dropper('/url/to/upload',{
 	}
 });
 
-'''
+```
 
 ## License
 _The MIT License (MIT)_ 
