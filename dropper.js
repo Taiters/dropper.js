@@ -32,10 +32,10 @@ $(function(){
 	$.fn.dropper = function(url,options) {
 
 		var settings = $.extend({
-			method:   'POST',
-			progress: null,
-			start:    null,
-			success:  null,
+			method:   'POST', // Method to use for sending data.
+			progress: null,   // Function to call onprogress.
+			start:    null,   // Function to call onloadstart.
+			success:  null,   // Function to call when upload is complete.
 		},options);
 
 		var dropper = $(this);
@@ -43,13 +43,19 @@ $(function(){
 		dropper.bind('drop',function(e){
 
 			e.originalEvent.preventDefault();
-			var fileReader = new FileReader();
 
+			// Create FileReader and bind onload event.
+			var fileReader = new FileReader();
 			fileReader.onload = (function(file) {
 
 				var xhr = $.ajaxSettings.xhr();
 
+				// Attach functions as listeners if they
+				// are set.
 				if(typeof(settings.progress) == typeof(Function)) {
+
+					// Pass the upload percentage only, rather than the
+					// event. This keeps things simpler.
 					xhr.upload.addEventListener('progress',function(e){
 						if(e.lengthComputable) {
 							var prcnt = Math.floor((e.loaded / e.total)*100);
@@ -73,14 +79,12 @@ $(function(){
 					xhr:     provider,
 					success: settings.success
 				});
-
-
 			});
-
-
 
 			var files = e.dataTransfer.files;
 
+			// Currently only supports single file
+			// uploads.
 			if(files.length > 1){
 				return;
 			}
@@ -90,6 +94,4 @@ $(function(){
 			});
 		});
 	}
-
-
 }(jQuery));
